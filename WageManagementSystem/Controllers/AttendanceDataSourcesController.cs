@@ -10,109 +10,107 @@ using WageManagementSystem.Models;
 
 namespace WageManagementSystem.Controllers
 {
-    public class SchoolsController : Controller
+    public class AttendanceDataSourcesController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: Schools
+        // GET: AttendanceDataSources
         public ActionResult Index()
         {
-           
-
-            return View(db.Schools.ToList());
+            return View(db.AttendanceDataSourceses.ToList());
         }
 
-        // GET: Schools/Details/5
+        // GET: AttendanceDataSources/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            School school = db.Schools.Find(id);
-            if (school == null)
+            AttendanceDataSources attendanceDataSources = db.AttendanceDataSourceses.Find(id);
+            if (attendanceDataSources == null)
             {
                 return HttpNotFound();
             }
-            return View(school);
+            return View(attendanceDataSources);
         }
 
-        // GET: Schools/Create
+        // GET: AttendanceDataSources/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Schools/Create
+        // POST: AttendanceDataSources/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,IsActive")] School school)
+        public ActionResult Create([Bind(Include = "Id,Branch,AttendenceSources")] AttendanceDataSources attendanceDataSources)
         {
             if (ModelState.IsValid)
             {
-                db.Schools.Add(school);
+                db.AttendanceDataSourceses.Add(attendanceDataSources);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(school);
+            return View(attendanceDataSources);
         }
 
-        // GET: Schools/Edit/5
+        // GET: AttendanceDataSources/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            School school = db.Schools.Find(id);
-            if (school == null)
+            AttendanceDataSources attendanceDataSources = db.AttendanceDataSourceses.Find(id);
+            if (attendanceDataSources == null)
             {
                 return HttpNotFound();
             }
-            return View(school);
+            return View(attendanceDataSources);
         }
 
-        // POST: Schools/Edit/5
+        // POST: AttendanceDataSources/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,IsActive")] School school)
+        public ActionResult Edit([Bind(Include = "Id,Branch,AttendenceSources")] AttendanceDataSources attendanceDataSources)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(school).State = EntityState.Modified;
+                db.Entry(attendanceDataSources).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(school);
+            return View(attendanceDataSources);
         }
 
-        // GET: Schools/Delete/5
+        // GET: AttendanceDataSources/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            School school = db.Schools.Find(id);
-            if (school == null)
+            AttendanceDataSources attendanceDataSources = db.AttendanceDataSourceses.Find(id);
+            if (attendanceDataSources == null)
             {
                 return HttpNotFound();
             }
-            return View(school);
+            return View(attendanceDataSources);
         }
 
-        // POST: Schools/Delete/5
+        // POST: AttendanceDataSources/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            School school = db.Schools.Find(id);
-            db.Schools.Remove(school);
+            AttendanceDataSources attendanceDataSources = db.AttendanceDataSourceses.Find(id);
+            db.AttendanceDataSourceses.Remove(attendanceDataSources);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

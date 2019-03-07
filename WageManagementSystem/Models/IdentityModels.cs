@@ -22,6 +22,7 @@ namespace WageManagementSystem.Models
 
     {
         public DbSet<School> Schools { get; set; }
+        public DbSet<AttendanceDataSources> AttendanceDataSourceses { get; set; }
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
