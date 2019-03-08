@@ -206,6 +206,10 @@
     <Compile Include="Migrations\201903061351052_InitialModel.Designer.cs">
       <DependentUpon>201903061351052_InitialModel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201903071315218_AddTableSchoolNameAndTableAttendance.cs" />
+    <Compile Include="Migrations\201903071315218_AddTableSchoolNameAndTableAttendance.Designer.cs">
+      <DependentUpon>201903071315218_AddTableSchoolNameAndTableAttendance.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AttendanceDataSources.cs" />
@@ -286,6 +290,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Dtos\" />
     <Folder Include="ViewModels\" />
   </ItemGroup>
   <ItemGroup>
@@ -305,6 +310,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201903061351052_InitialModel.resx">
       <DependentUpon>201903061351052_InitialModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903071315218_AddTableSchoolNameAndTableAttendance.resx">
+      <DependentUpon>201903071315218_AddTableSchoolNameAndTableAttendance.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
