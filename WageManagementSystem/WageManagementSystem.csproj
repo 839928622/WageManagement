@@ -199,6 +199,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\SchoolsController.cs" />
+    <Compile Include="Dtos\EmployeePayrollDto.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -210,9 +211,14 @@
     <Compile Include="Migrations\201903071315218_AddTableSchoolNameAndTableAttendance.Designer.cs">
       <DependentUpon>201903071315218_AddTableSchoolNameAndTableAttendance.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201903080329430_AddTableEmployeePayrolls.cs" />
+    <Compile Include="Migrations\201903080329430_AddTableEmployeePayrolls.Designer.cs">
+      <DependentUpon>201903080329430_AddTableEmployeePayrolls.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AttendanceDataSources.cs" />
+    <Compile Include="Models\EmployeePayroll.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\SchoolName.cs" />
@@ -290,7 +296,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Dtos\" />
     <Folder Include="ViewModels\" />
   </ItemGroup>
   <ItemGroup>
@@ -313,6 +318,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201903071315218_AddTableSchoolNameAndTableAttendance.resx">
       <DependentUpon>201903071315218_AddTableSchoolNameAndTableAttendance.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903080329430_AddTableEmployeePayrolls.resx">
+      <DependentUpon>201903080329430_AddTableEmployeePayrolls.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
