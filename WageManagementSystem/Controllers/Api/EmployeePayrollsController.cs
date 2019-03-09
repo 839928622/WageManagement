@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AutoMapper;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -9,6 +10,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
+using WageManagementSystem.Dtos;
 using WageManagementSystem.Models;
 
 namespace WageManagementSystem.Controllers.Api
@@ -18,72 +20,83 @@ namespace WageManagementSystem.Controllers.Api
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: api/EmployeePayrolls
-        public IQueryable<EmployeePayroll> GetEmployeePayrolls()
+        public IEnumerable<EmployeePayrollDto> GetEmployeePayrolls()
         {
-            return db.EmployeePayrolls;
+            return db.EmployeePayrolls.ToList().Select(Mapper.Map<EmployeePayroll,EmployeePayrollDto>);
         }
 
         // GET: api/EmployeePayrolls/5
-        [ResponseType(typeof(EmployeePayroll))]
-        public async Task<IHttpActionResult> GetEmployeePayroll(int id)
+      //  [ResponseType(typeof(EmployeePayroll))]
+        public async Task<EmployeePayrollDto> GetEmployeePayroll(int id)
         {
             EmployeePayroll employeePayroll = await db.EmployeePayrolls.FindAsync(id);
             if (employeePayroll == null)
             {
-                return NotFound();
+                throw new  HttpResponseException(HttpStatusCode.NotFound);
             }
 
-            return Ok(employeePayroll);
+            return Mapper.Map<EmployeePayroll, EmployeePayrollDto>(employeePayroll);
         }
 
         // PUT: api/EmployeePayrolls/5
-        [ResponseType(typeof(void))]
-        public async Task<IHttpActionResult> PutEmployeePayroll(int id, EmployeePayroll employeePayroll)
+      //  [ResponseType(typeof(void))]
+      [HttpPut]
+        public void  PutEmployeePayroll(int id, EmployeePayrollDto employeePayrollDto)
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest(ModelState);
+                throw new HttpResponseException(HttpStatusCode.BadRequest);
             }
 
-            if (id != employeePayroll.Id)
+            var employeePayrollInDb = db.EmployeePayrolls.SingleOrDefault(e => e.Id == id);
+            if (employeePayrollInDb==null)
             {
-                return BadRequest();
+                throw new  HttpResponseException(HttpStatusCode.NotFound);
             }
 
-            db.Entry(employeePayroll).State = EntityState.Modified;
+            Mapper.Map<EmployeePayrollDto, EmployeePayroll>(employeePayrollDto,employeePayrollInDb);
 
-            try
-            {
-                await db.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!EmployeePayrollExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+            db.SaveChanges();
 
-            return StatusCode(HttpStatusCode.NoContent);
+            //try
+            //{
+            //    await db.SaveChangesAsync();
+            //}
+            //catch (DbUpdateConcurrencyException)
+            //{
+            //    if (!EmployeePayrollExists(id))
+            //    {
+            //        return NotFound();
+            //    }
+            //    else
+            //    {
+            //        throw;
+            //    }
+            //}
+
+            //return StatusCode(HttpStatusCode.NoContent);
         }
 
         // POST: api/EmployeePayrolls
-        [ResponseType(typeof(EmployeePayroll))]
-        public async Task<IHttpActionResult> PostEmployeePayroll(EmployeePayroll employeePayroll)
+      //  [ResponseType(typeof(EmployeePayroll))]
+      [HttpPost]
+        public async Task<IHttpActionResult> CreateEmployeePayroll(EmployeePayrollDto employeePayrollDto)
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest(ModelState);
+                return BadRequest();
+                //throw new HttpResponseException(HttpStatusCode.BadRequest);
             }
+
+            var employeePayroll = Mapper.Map<EmployeePayrollDto,EmployeePayroll>(employeePayrollDto);
 
             db.EmployeePayrolls.Add(employeePayroll);
             await db.SaveChangesAsync();
 
-            return CreatedAtRoute("DefaultApi", new { id = employeePayroll.Id }, employeePayroll);
+            employeePayrollDto.Id = employeePayroll.Id;
+            return Created(new Uri(Request.RequestUri+"/"+employeePayroll.Id), employeePayrollDto);//first agument:URI string,second agument:the object that we created
+            
+            //return CreatedAtRoute("DefaultApi", new { id = employeePayroll.Id }, employeePayroll);
         }
 
         // DELETE: api/EmployeePayrolls/5

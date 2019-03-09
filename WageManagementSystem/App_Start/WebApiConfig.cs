@@ -13,9 +13,10 @@ namespace WageManagementSystem.App_Start
     {
         public static void Register(HttpConfiguration config)
         {
-            var settings = config.Formatters.JsonFormatter.SerializerSettings;
-            settings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+            var settings =config.Formatters.JsonFormatter.SerializerSettings;
+            settings.ContractResolver = new CamelCasePropertyNamesContractResolver();//CamelCase Json
             settings.Formatting = Formatting.Indented;
+
 
             config.MapHttpAttributeRoutes();
 
