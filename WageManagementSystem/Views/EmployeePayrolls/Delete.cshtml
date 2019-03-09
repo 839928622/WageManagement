@@ -1,0 +1,152 @@
+﻿@model WageManagementSystem.Models.EmployeePayroll
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>EmployeePayroll</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.PayrollDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PayrollDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EmoloyeeNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EmoloyeeNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EmployeeName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EmployeeName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Gender)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Gender)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Attendance)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Attendance)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OverTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OverTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Salary)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Salary)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AttendanceDataSources)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AttendanceDataSources)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ComPosition)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ComPosition)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ComRank)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ComRank)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EnrollMentDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EnrollMentDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ResignationDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ResignationDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Deadline)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Deadline)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SchoolName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SchoolName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FeeType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FeeType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ReleaseType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ReleaseType)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

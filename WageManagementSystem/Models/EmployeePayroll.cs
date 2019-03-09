@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -8,6 +9,8 @@ namespace WageManagementSystem.Models
     public class EmployeePayroll
     {
         public int Id { get; set; }
+
+        [Display(Name = "发放年份")]
         public DateTime PayrollDate { get; set; }
         public string EmoloyeeNumber { get; set; }
         public string EmployeeName { get; set; }

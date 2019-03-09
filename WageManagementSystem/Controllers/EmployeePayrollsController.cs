@@ -7,111 +7,117 @@ using System.Threading.Tasks;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.Ajax.Utilities;
 using WageManagementSystem.Models;
 
 namespace WageManagementSystem.Controllers
 {
-    public class AttendanceDataSourcesController : Controller
+    public class EmployeePayrollsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: AttendanceDataSources
+        // GET: EmployeePayrolls
         public async Task<ActionResult> Index()
         {
-            return View(await db.AttendanceDataSourceses.ToListAsync());
+           //var dataSources=  from data in db.EmployeePayrolls
+                            //.OrderBy(e=>e.PayrollDate.Year)
+                            //select data;
+       //  ViewBag.dist = db.EmployeePayrolls.Select(c => c.PayrollDate).Distinct();
+       ViewBag.result=db.EmployeePayrolls.DistinctBy(e => e.PayrollDate.Year);
+            return View(await db.EmployeePayrolls.Distinct().ToListAsync());
         }
 
-        // GET: AttendanceDataSources/Details/5
+        // GET: EmployeePayrolls/Details/5
         public async Task<ActionResult> Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            AttendanceDataSources attendanceDataSources = await db.AttendanceDataSourceses.FindAsync(id);
-            if (attendanceDataSources == null)
+            EmployeePayroll employeePayroll = await db.EmployeePayrolls.FindAsync(id);
+            if (employeePayroll == null)
             {
                 return HttpNotFound();
             }
-            return View(attendanceDataSources);
+            return View(employeePayroll);
         }
 
-        // GET: AttendanceDataSources/Create
+        // GET: EmployeePayrolls/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: AttendanceDataSources/Create
+        // POST: EmployeePayrolls/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "Id,Branch,AttendenceSources")] AttendanceDataSources attendanceDataSources)
+        public async Task<ActionResult> Create([Bind(Include = "Id,PayrollDate,EmoloyeeNumber,EmployeeName,Gender,Attendance,OverTime,Salary,AttendanceDataSources,ComPosition,ComRank,EnrollMentDate,ResignationDate,Deadline,SchoolName,FeeType,ReleaseType")] EmployeePayroll employeePayroll)
         {
             if (ModelState.IsValid)
             {
-                db.AttendanceDataSourceses.Add(attendanceDataSources);
+                db.EmployeePayrolls.Add(employeePayroll);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
 
-            return View(attendanceDataSources);
+            return View(employeePayroll);
         }
 
-        // GET: AttendanceDataSources/Edit/5
+        // GET: EmployeePayrolls/Edit/5
         public async Task<ActionResult> Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            AttendanceDataSources attendanceDataSources = await db.AttendanceDataSourceses.FindAsync(id);
-            if (attendanceDataSources == null)
+            EmployeePayroll employeePayroll = await db.EmployeePayrolls.FindAsync(id);
+            if (employeePayroll == null)
             {
                 return HttpNotFound();
             }
-            return View(attendanceDataSources);
+            return View(employeePayroll);
         }
 
-        // POST: AttendanceDataSources/Edit/5
+        // POST: EmployeePayrolls/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "Id,Branch,AttendenceSources")] AttendanceDataSources attendanceDataSources)
+        public async Task<ActionResult> Edit([Bind(Include = "Id,PayrollDate,EmoloyeeNumber,EmployeeName,Gender,Attendance,OverTime,Salary,AttendanceDataSources,ComPosition,ComRank,EnrollMentDate,ResignationDate,Deadline,SchoolName,FeeType,ReleaseType")] EmployeePayroll employeePayroll)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(attendanceDataSources).State = EntityState.Modified;
+                db.Entry(employeePayroll).State = EntityState.Modified;
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            return View(attendanceDataSources);
+            return View(employeePayroll);
         }
 
-        // GET: AttendanceDataSources/Delete/5
+        // GET: EmployeePayrolls/Delete/5
         public async Task<ActionResult> Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            AttendanceDataSources attendanceDataSources = await db.AttendanceDataSourceses.FindAsync(id);
-            if (attendanceDataSources == null)
+            EmployeePayroll employeePayroll = await db.EmployeePayrolls.FindAsync(id);
+            if (employeePayroll == null)
             {
                 return HttpNotFound();
             }
-            return View(attendanceDataSources);
+            return View(employeePayroll);
         }
 
-        // POST: AttendanceDataSources/Delete/5
+        // POST: EmployeePayrolls/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            AttendanceDataSources attendanceDataSources = await db.AttendanceDataSourceses.FindAsync(id);
-            db.AttendanceDataSourceses.Remove(attendanceDataSources);
+            EmployeePayroll employeePayroll = await db.EmployeePayrolls.FindAsync(id);
+            db.EmployeePayrolls.Remove(employeePayroll);
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
         }
