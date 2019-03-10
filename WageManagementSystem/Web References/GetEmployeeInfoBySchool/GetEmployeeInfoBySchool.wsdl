@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:intf="urn:DefaultNamespace" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:impl="urn:DefaultNamespace" xmlns="http://schemas.xmlsoap.org/wsdl/" targetNamespace="urn:DefaultNamespace" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="urn:DefaultNamespace">
+      <xsd:element name="SYNEMPLOYEE">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="OSVCHDR" type="impl:SVCHDR" />
+            <xsd:element name="OAPPHDR" type="impl:APPHDR" />
+            <xsd:element name="OAPPBODY" type="impl:APPBODY" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:complexType name="SVCHDR">
+        <xsd:sequence>
+          <xsd:element name="SOURCEID" type="xsd:string" />
+          <xsd:element name="DESTINATIONID" type="xsd:string" />
+          <xsd:element name="TYPE" type="xsd:string" />
+          <xsd:element name="IPADDRESS" type="xsd:string" />
+          <xsd:element name="BO" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="APPHDR">
+        <xsd:sequence>
+          <xsd:element name="USER01" type="xsd:string" />
+          <xsd:element name="USER02" type="xsd:string" />
+          <xsd:element name="USER03" type="xsd:string" />
+          <xsd:element name="USER04" type="xsd:string" />
+          <xsd:element name="USER05" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="HR_EMPLOYEE_ITEM">
+        <xsd:sequence>
+          <xsd:element name="ER_ID" type="xsd:string" />
+          <xsd:element name="ER_CODE" type="xsd:string" />
+          <xsd:element name="EMPLOYEE_CODE" type="xsd:string" />
+          <xsd:element name="ID_NUMBER" type="xsd:string" />
+          <xsd:element name="SIGN_ORG" type="xsd:string" />
+          <xsd:element name="SIGN_DATE" type="xsd:string" />
+          <xsd:element name="EXPIRED_DATE" type="xsd:string" />
+          <xsd:element name="CARD_NUMBER" type="xsd:string" />
+          <xsd:element name="EMPLOYEE_NAME" type="xsd:string" />
+          <xsd:element name="MNEMONIC_CODE" type="xsd:string" />
+          <xsd:element name="ENGLISH_NAME" type="xsd:string" />
+          <xsd:element name="AVATAR_ID1" type="xsd:string" />
+          <xsd:element name="AVATAR_ID2" type="xsd:string" />
+          <xsd:element name="BIRTHDAY" type="xsd:string" />
+          <xsd:element name="SEX" type="xsd:string" />
+          <xsd:element name="BWDAY" type="xsd:string" />
+          <xsd:element name="BWYEAR" type="xsd:string" />
+          <xsd:element name="HIREDDAY" type="xsd:string" />
+          <xsd:element name="LJDATE" type="xsd:string" />
+          <xsd:element name="DEGREE" type="xsd:string" />
+          <xsd:element name="MARRIED" type="xsd:string" />
+          <xsd:element name="NATIONALITY" type="xsd:string" />
+          <xsd:element name="NATIVEID" type="xsd:string" />
+          <xsd:element name="NATIVEPLACE" type="xsd:string" />
+          <xsd:element name="ADDRESS" type="xsd:string" />
+          <xsd:element name="NATION" type="xsd:string" />
+          <xsd:element name="EMAIL" type="xsd:string" />
+          <xsd:element name="EMPSTATID" type="xsd:string" />
+          <xsd:element name="MODIFY" type="xsd:string" />
+          <xsd:element name="USEDNAME" type="xsd:string" />
+          <xsd:element name="PLDCP" type="xsd:string" />
+          <xsd:element name="MAJOR" type="xsd:string" />
+          <xsd:element name="REGISTERTYPE" type="xsd:string" />
+          <xsd:element name="REGISTERADDRESS" type="xsd:string" />
+          <xsd:element name="HEALTH" type="xsd:string" />
+          <xsd:element name="MEDICALHISTORY" type="xsd:string" />
+          <xsd:element name="BLOODTYPE" type="xsd:string" />
+          <xsd:element name="HEIGHT" type="xsd:string" />
+          <xsd:element name="IMPORTWAY" type="xsd:string" />
+          <xsd:element name="IMPORTOR" type="xsd:string" />
+          <xsd:element name="CELLPHONE" type="xsd:string" />
+          <xsd:element name="URGENCYCONTACT" type="xsd:string" />
+          <xsd:element name="URMAIL" type="xsd:string" />
+          <xsd:element name="TELPHONE" type="xsd:string" />
+          <xsd:element name="INTRODUCER" type="xsd:string" />
+          <xsd:element name="GUARANTOR" type="xsd:string" />
+          <xsd:element name="SKILL" type="xsd:string" />
+          <xsd:element name="SKILLFULLANGUAGE" type="xsd:string" />
+          <xsd:element name="SPECIALITY" type="xsd:string" />
+          <xsd:element name="WELFARE" type="xsd:string" />
+          <xsd:element name="TALENTSTYPE" type="xsd:string" />
+          <xsd:element name="EMNATURE" type="xsd:string" />
+          <xsd:element name="ORGID" type="xsd:string" />
+          <xsd:element name="ORGCODE" type="xsd:string" />
+          <xsd:element name="ORGNAME" type="xsd:string" />
+          <xsd:element name="UORGID" type="xsd:string" />
+          <xsd:element name="UORGCODE" type="xsd:string" />
+          <xsd:element name="UORGNAME" type="xsd:string" />
+          <xsd:element name="UIDPATH" type="xsd:string" />
+          <xsd:element name="HWC_NAMEZL" type="xsd:string" />
+          <xsd:element name="LV_ID" type="xsd:string" />
+          <xsd:element name="LV_NUM" type="xsd:string" />
+          <xsd:element name="HG_ID" type="xsd:string" />
+          <xsd:element name="HG_CODE" type="xsd:string" />
+          <xsd:element name="HG_NAME" type="xsd:string" />
+          <xsd:element name="OSPID" type="xsd:string" />
+          <xsd:element name="OSPCODE" type="xsd:string" />
+          <xsd:element name="SP_NAME" type="xsd:string" />
+          <xsd:element name="ISKEY" type="xsd:string" />
+          <xsd:element name="HWC_NAMEZQ" type="xsd:string" />
+          <xsd:element name="HWC_NAMEZZ" type="xsd:string" />
+          <xsd:element name="USABLE" type="xsd:string" />
+          <xsd:element name="SSCURTY_ADDR" type="xsd:string" />
+          <xsd:element name="SSCURTY_STARTDATE" type="xsd:string" />
+          <xsd:element name="SSCURTY_ENDDATE" type="xsd:string" />
+          <xsd:element name="SHOESIZE" type="xsd:string" />
+          <xsd:element name="PANTS_CODE" type="xsd:string" />
+          <xsd:element name="COAT_CODE" type="xsd:string" />
+          <xsd:element name="NEEDDROM" type="xsd:string" />
+          <xsd:element name="DORM_BED" type="xsd:string" />
+          <xsd:element name="PAY_WAY" type="xsd:string" />
+          <xsd:element name="SCHEDTYPE" type="xsd:string" />
+          <xsd:element name="ATDTYPE" type="xsd:string" />
+          <xsd:element name="RESIGNTIMES" type="xsd:string" />
+          <xsd:element name="WFBUSYSS" type="xsd:string" />
+          <xsd:element name="NOCLOCK" type="xsd:string" />
+          <xsd:element name="PROMOTIONDAY" type="xsd:string" />
+          <xsd:element name="ENTRYSOURCR" type="xsd:string" />
+          <xsd:element name="RECTCODE" type="xsd:string" />
+          <xsd:element name="RECTNAME" type="xsd:string" />
+          <xsd:element name="NOTE" type="xsd:string" />
+          <xsd:element name="ATTID" type="xsd:string" />
+          <xsd:element name="ENTID" type="xsd:string" />
+          <xsd:element name="IDPATH" type="xsd:string" />
+          <xsd:element name="CREATOR" type="xsd:string" />
+          <xsd:element name="CREATETIME" type="xsd:string" />
+          <xsd:element name="UPDATOR" type="xsd:string" />
+          <xsd:element name="UPDATETIME" type="xsd:string" />
+          <xsd:element name="PROPERTY1" type="xsd:string" />
+          <xsd:element name="PROPERTY2" type="xsd:string" />
+          <xsd:element name="PROPERTY3" type="xsd:string" />
+          <xsd:element name="PROPERTY4" type="xsd:string" />
+          <xsd:element name="PROPERTY5" type="xsd:string" />
+          <xsd:element name="INSURANCESTAT" type="xsd:string" />
+          <xsd:element name="ADVISERCODE" type="xsd:string" />
+          <xsd:element name="ADVISERNAME" type="xsd:string" />
+          <xsd:element name="ADVISERPHONE" type="xsd:string" />
+          <xsd:element name="JURIDICAL" type="xsd:string" />
+          <xsd:element name="TRANSORG" type="xsd:string" />
+          <xsd:element name="TRANSEXTIME" type="xsd:string" />
+          <xsd:element name="DISPUNIT" type="xsd:string" />
+          <xsd:element name="DISPEEXTIME" type="xsd:string" />
+          <xsd:element name="KQDATE_START" type="xsd:string" />
+          <xsd:element name="KQDATE_END" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="APPBODY">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="OHR_EMPLOYEE_ITEM" nillable="true" type="impl:HR_EMPLOYEE_ITEM" />
+          <xsd:element name="USER01" type="xsd:string" />
+          <xsd:element name="USER02" type="xsd:string" />
+          <xsd:element name="USER03" type="xsd:string" />
+          <xsd:element name="USER04" type="xsd:string" />
+          <xsd:element name="USER05" type="xsd:string" />
+          <xsd:element name="SCHOOLNAME" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="SYNEMPLOYEEResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="SYNEMPLOYEEReturn" type="impl:SVCBODYS" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:complexType name="SVCHDRS">
+        <xsd:sequence>
+          <xsd:element name="RCODE" type="xsd:string" />
+          <xsd:element name="RDESC" type="xsd:string" />
+          <xsd:element name="ESBCODE" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="APPHDRS">
+        <xsd:sequence>
+          <xsd:element name="USER01" type="xsd:string" />
+          <xsd:element name="USER02" type="xsd:string" />
+          <xsd:element name="USER03" type="xsd:string" />
+          <xsd:element name="USER04" type="xsd:string" />
+          <xsd:element name="USER05" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="EMPLOYEEINFO">
+        <xsd:sequence>
+          <xsd:element name="EMPLOYEEID" type="xsd:string" />
+          <xsd:element name="EMPLOYEENAME" type="xsd:string" />
+          <xsd:element name="GENDER" type="xsd:string" />
+          <xsd:element name="COMPOSITION" type="xsd:string" />
+          <xsd:element name="COMRANK" type="xsd:string" />
+          <xsd:element name="ENROLLMENTDATE" type="xsd:string" />
+          <xsd:element name="RESIGNATIONDATE" type="xsd:string" />
+          <xsd:element name="DEADLINE" type="xsd:string" />
+          <xsd:element name="SCHOOLNAME" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="APPBODYS">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="EMPLOYEES" nillable="true" type="impl:EMPLOYEEINFO" />
+          <xsd:element name="USER01" type="xsd:string" />
+          <xsd:element name="USER02" type="xsd:string" />
+          <xsd:element name="USER03" type="xsd:string" />
+          <xsd:element name="USER04" type="xsd:string" />
+          <xsd:element name="USER05" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="SVCBODYS">
+        <xsd:sequence>
+          <xsd:element name="OSVCHDRS" nillable="true" type="impl:SVCHDRS" />
+          <xsd:element name="OAPPHDRS" nillable="true" type="impl:APPHDRS" />
+          <xsd:element name="OAPPBODYS" nillable="true" type="impl:APPBODYS" />
+        </xsd:sequence>
+      </xsd:complexType>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="SYNEMPLOYEEResponse">
+    <wsdl:part name="parameters" element="impl:SYNEMPLOYEEResponse" />
+  </wsdl:message>
+  <wsdl:message name="SYNEMPLOYEERequest">
+    <wsdl:part name="parameters" element="impl:SYNEMPLOYEE" />
+  </wsdl:message>
+  <wsdl:portType name="Employee">
+    <wsdl:operation name="SYNEMPLOYEE">
+      <wsdl:input name="SYNEMPLOYEERequest" message="impl:SYNEMPLOYEERequest" />
+      <wsdl:output name="SYNEMPLOYEEResponse" message="impl:SYNEMPLOYEEResponse" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="DominoSoapBinding" type="impl:Employee">
+    <wsdlsoap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="SYNEMPLOYEE">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="SYNEMPLOYEERequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="SYNEMPLOYEEResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="EmployeeService">
+    <wsdl:port name="Domino" binding="impl:DominoSoapBinding">
+      <wsdlsoap:address location="http://appserver.donlim.com:80/ESB/HRMSBasicInfo.nsf/GetEmployeeInfoBySchool?OpenWebService" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

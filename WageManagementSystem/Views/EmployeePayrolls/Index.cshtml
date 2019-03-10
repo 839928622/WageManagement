@@ -12,7 +12,7 @@
     @Html.ActionLink("补录", "Create")
 </p>
 
-<table class="table" id="">
+<table class="table" id="outline">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.PayrollDate)
@@ -25,7 +25,7 @@
     @foreach (var item in Model.DistinctBy(c=>c.PayrollDate.Year)){
         <tr>
             <td>
-                <button class="btn-link">@Html.DisplayFor(model => item.PayrollDate.Year)</button>  
+                <button class="btn-link js-outline">@Html.DisplayFor(model => item.PayrollDate.Year)</button>  
             </td>
 
         
@@ -162,7 +162,7 @@
                                 var m = date.getMonth();
                                 var d = date.getDay();
                                 return y + "-" + m + "-" + d;
-                            } //返回yyyy-MM-dd
+                            } //rreturn yyyy-MM-dd
                         },
                         {
                             data: "resignationDate",
@@ -172,7 +172,7 @@
                                 var m = date.getMonth();
                                 var d = date.getDay();
                                 return y + "-" + m + "-" + d;
-                            } //返回yyyy-MM-dd
+                            } //rreturn yyyy-MM-dd
 
                         },
                         {
@@ -182,7 +182,7 @@
                                 var y = date.getFullYear();
                                 var m = date.getMonth();
                                 var d = date.getDay();
-                                return y + "-" + m + "-" + d; //返回yyyy-MM-dd
+                                return y + "-" + m + "-" + d; //rreturn yyyy-MM-dd
                             }
                         },
                         {
@@ -207,13 +207,7 @@
 
         });
 
-        function dataform(val) {
-            var date = new Date(val);
-            var y = date.getFullYear();
-            var m = date.getMonth();
-            var d = date.getDay();
-            return y + "-" + m + "-" + d;
-        }
+       
 
 
         $("#EmployeePayrolls").on("click",
