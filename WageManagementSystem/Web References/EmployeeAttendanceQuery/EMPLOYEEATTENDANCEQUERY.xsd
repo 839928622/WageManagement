@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://www.example.org/DONLIM_MCASHRMS_EMPLOYEEATTENDANCEQUERY_087/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" targetNamespace="http://www.example.org/DONLIM_MCASHRMS_EMPLOYEEATTENDANCEQUERY_087/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:element ibmSchExtn:docRoot="true" name="DONLIM_MCASHRMS_EMPLOYEEATTENDANCEQUERY_087">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element minOccurs="1" maxOccurs="1" name="SvcHdr" type="tns:SvcHdrType" />
+        <xsd:element minOccurs="0" maxOccurs="1" name="AppHdr" type="tns:AppHdrType" />
+        <xsd:element minOccurs="1" maxOccurs="1" name="AppBody" type="tns:AppBodyType" />
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element ibmSchExtn:docRoot="true" name="DONLIM_MCASHRMS_EMPLOYEEATTENDANCEQUERY_087Response">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element minOccurs="1" maxOccurs="1" name="SvcHdrs" type="tns:SvcHdrTypes" />
+        <xsd:element minOccurs="0" maxOccurs="1" name="AppHdrs" type="tns:AppHdrTypes" />
+        <xsd:element minOccurs="1" maxOccurs="1" name="AppBodys" type="tns:AppBodyTypes" />
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:complexType name="SvcHdrType">
+    <xsd:sequence>
+      <xsd:element minOccurs="1" maxOccurs="1" name="SOURCEID" type="xsd:string" />
+      <xsd:element minOccurs="1" maxOccurs="1" name="DESTINATIONID" type="xsd:string" />
+      <xsd:element minOccurs="1" maxOccurs="1" name="TYPE" type="xsd:string" />
+      <xsd:element minOccurs="1" maxOccurs="1" name="IPADDRESS" type="xsd:string" />
+      <xsd:element minOccurs="1" maxOccurs="1" name="BO" type="xsd:string" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="AppHdrType">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" maxOccurs="1" name="User01" type="xsd:string" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="User02" type="xsd:string" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="User03" type="xsd:string" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="User04" type="xsd:string" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="User05" type="xsd:string" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="AppBodyType">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" maxOccurs="1" name="User01" type="xsd:string" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="User02" type="xsd:string" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="User03" type="xsd:string" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="User04" type="xsd:string" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="User05" type="xsd:string" />
+      <xsd:element minOccurs="1" maxOccurs="unbounded" name="QueryData_ITEM" type="tns:QueryDataType" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="SourceType" type="xsd:string" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="SvcHdrTypes">
+    <xsd:sequence>
+      <xsd:element minOccurs="1" maxOccurs="1" name="RCODE" type="xsd:string" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="RDESC" type="xsd:string" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="ESBCODE" type="xsd:string" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="AppHdrTypes">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" maxOccurs="1" name="User01" type="xsd:string" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="User02" type="xsd:string" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="User03" type="xsd:string" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="User04" type="xsd:string" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="User05" type="xsd:string" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="AppBodyTypes">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" maxOccurs="1" name="User01" type="xsd:string" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="User02" type="xsd:string" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="User03" type="xsd:string" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="User04" type="xsd:string" />
+      <xsd:element minOccurs="0" maxOccurs="1" name="User05" type="xsd:string" />
+      <xsd:element minOccurs="0" maxOccurs="unbounded" name="QueryResultList_ITEM" type="tns:QueryResultListTypes" />
+      <xsd:element name="RecordCount" nillable="true" type="xsd:int" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="QueryDataType">
+    <xsd:sequence>
+      <xsd:element minOccurs="1" maxOccurs="1" name="EmployeeCode" type="xsd:string" />
+      <xsd:element name="StartTime" nillable="true" type="xsd:dateTime" />
+      <xsd:element name="EndTime" nillable="true" type="xsd:dateTime" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="QueryResultListTypes">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" maxOccurs="1" name="EmployeeCode" type="xsd:string" />
+      <xsd:element name="Ycqts" nillable="true" type="xsd:double" />
+      <xsd:element name="OverTime" nillable="true" type="xsd:double" />
+      <xsd:element name="AttendanceHour" nillable="true" type="xsd:double" />
+    </xsd:sequence>
+  </xsd:complexType>
+</xsd:schema>

@@ -252,6 +252,11 @@
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="Startup.cs" />
+    <Compile Include="Web References\EmployeeAttendanceQuery\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
     <Compile Include="Web References\GetEmployeeInfoBySchool\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -505,6 +510,17 @@
     <Content Include="Views\EmployeePayrolls\Details.cshtml" />
     <Content Include="Views\EmployeePayrolls\Edit.cshtml" />
     <Content Include="Views\EmployeePayrolls\Index.cshtml" />
+    <None Include="Web References\EmployeeAttendanceQuery\DONLIM_MCASHRMS_EMPLOYEEATTENDANCEQUERY_087.wsdl" />
+    <Content Include="Web References\EmployeeAttendanceQuery\DONLIM_MCASHRMS_EMPLOYEEATTENDANCEQUERY_087Response.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </Content>
+    <None Include="Web References\EmployeeAttendanceQuery\EMPLOYEEATTENDANCEQUERY.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="Web References\EmployeeAttendanceQuery\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </Content>
     <None Include="Web References\GetEmployeeInfoBySchool\GetEmployeeInfoBySchool.wsdl" />
     <Content Include="Web References\GetEmployeeInfoBySchool\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
@@ -556,6 +572,17 @@
     <WebReferences Include="Web References\" />
   </ItemGroup>
   <ItemGroup>
+    <WebReferenceUrl Include="http://192.168.119.87:7803/WS/DONLIM/MCASHRMS/EMPLOYEEATTENDANCEQUERY%3fwsdl">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\EmployeeAttendanceQuery\</RelPath>
+      <UpdateFromURL>http://192.168.119.87:7803/WS/DONLIM/MCASHRMS/EMPLOYEEATTENDANCEQUERY%3fwsdl</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>WageManagementSystem_EmployeeAttendanceQuery_DONLIM_MCASHRMS_EMPLOYEEATTENDANCEQUERY_087</CachedSettingsPropName>
+    </WebReferenceUrl>
     <WebReferenceUrl Include="http://appserver.donlim.com/ESB/HRMSBasicInfo.nsf/GetEmployeeInfoBySchool%3fWSDL">
       <UrlBehavior>Dynamic</UrlBehavior>
       <RelPath>Web References\GetEmployeeInfoBySchool\</RelPath>

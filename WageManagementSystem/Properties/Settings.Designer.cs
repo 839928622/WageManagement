@@ -33,5 +33,16 @@ namespace WageManagementSystem.Properties {
                 return ((string)(this["WageManagementSystem_GetEmployeeInfoBySchool_EmployeeService"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://192.168.119.87:7803/WS/DONLIM/MCASHRMS/EMPLOYEEATTENDANCEQUERY")]
+        public string WageManagementSystem_EmployeeAttendanceQuery_DONLIM_MCASHRMS_EMPLOYEEATTENDANCEQUERY_087 {
+            get {
+                return ((string)(this["WageManagementSystem_EmployeeAttendanceQuery_DONLIM_MCASHRMS_EMPLOYEEATTENDANCEQU" +
+                    "ERY_087"]));
+            }
+        }
     }
 }

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DiscoveryClientResultsFile xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Results>
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.ContractReference" url="http://192.168.119.87:7803/WS/DONLIM/MCASHRMS/EMPLOYEEATTENDANCEQUERY?wsdl" filename="DONLIM_MCASHRMS_EMPLOYEEATTENDANCEQUERY_087.wsdl" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="http://192.168.119.87:7803/WS/DONLIM/MCASHRMS/EMPLOYEEATTENDANCEQUERY?xsd=xsd0" filename="EMPLOYEEATTENDANCEQUERY.xsd" />
+  </Results>
+</DiscoveryClientResultsFile>
