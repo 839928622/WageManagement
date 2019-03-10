@@ -8,8 +8,13 @@ namespace WageManagementSystem
         // 有关捆绑的详细信息，请访问 https://go.microsoft.com/fwlink/?LinkId=301862
         public static void RegisterBundles(BundleCollection bundles)
         {
-            bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                        "~/Scripts/jquery-{version}.js"));
+            bundles.Add(new ScriptBundle("~/bundles/3rdlibrary").Include(
+                        "~/Scripts/jquery-{version}.js",
+                        "~/Scripts/bootstrap.js",
+                        "~/Scripts/bootbox.js",//import bootbox.js to bundles
+                        "~/Scripts/Datatables/jquery.datatables.js",//import jq plugin datatables.js to bundles
+                        "~/Script/datatables/datatables.bootstrap.js"
+                        ));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
@@ -19,14 +24,14 @@ namespace WageManagementSystem
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
                         "~/Scripts/modernizr-*"));
 
-            bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-                      "~/Scripts/bootstrap.js",
-                       "~/Scripts/bootbox.js"//import bootbox.js to bundles
+            //bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
+            //         
 
-                      ));
+            //          ));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
+                      "~/Content/Datatables/css/datatables.bootstrap.css",//import datatable css
                       "~/Content/site.css"));
         }
     }
