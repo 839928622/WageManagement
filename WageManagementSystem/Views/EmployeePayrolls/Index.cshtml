@@ -40,7 +40,7 @@
 </table>
 
 <div>
-    <table class="table table-bordered table-hover">
+    <table class="table table-bordered table-hover" id="EmployeePayrolls">
         <thead>
             <tr>
                 <td>发放年月份</td>
@@ -73,7 +73,7 @@
                  <td>@Employee.EmployeeName</td>
 
                  <td>
-                     <button class="btn-link">删除</button>
+                     <button data-employeePayroll-id="@Employee.Id" class="btn-link js-delete">删除</button>
                  </td>
              </tr>
          }
@@ -86,6 +86,25 @@
 
 @section scripts
 {
-    
+    <script>
+        $(document).ready(function() {
+            $("#EmployeePayrolls .js-delete").on("click",
+                function () {
+                    var button = $(this);
+                    if (confirm("您确定要删除该条记录吗？")) {
+                        $.ajax
+                        (
+                            {
+                                url: "../api/EmployeePayrolls/" + button.attr("data-employeePayroll-id"),
+                                method: "DELETE",
+                                    success: function () {
+                                        button.parents("tr").remove();
+                                    }
+                            }
+                        );
+                    }
+                });
+        });
+    </script>
 }
 

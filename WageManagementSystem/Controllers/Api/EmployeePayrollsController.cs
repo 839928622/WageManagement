@@ -100,7 +100,8 @@ namespace WageManagementSystem.Controllers.Api
         }
 
         // DELETE: api/EmployeePayrolls/5
-        [ResponseType(typeof(EmployeePayroll))]
+       // [ResponseType(typeof(EmployeePayrollDto))]
+       [HttpDelete]
         public async Task<IHttpActionResult> DeleteEmployeePayroll(int id)
         {
             EmployeePayroll employeePayroll = await db.EmployeePayrolls.FindAsync(id);
