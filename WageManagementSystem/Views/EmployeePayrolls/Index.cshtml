@@ -89,20 +89,30 @@
     <script>
         $(document).ready(function() {
             $("#EmployeePayrolls .js-delete").on("click",
-                function () {
+                function() {
                     var button = $(this);
-                    if (confirm("您确定要删除该条记录吗？")) {
-                        $.ajax
-                        (
+                    //
+                    bootbox.confirm("您确定要删除该条记录吗？",
+                        function (result)
+                        {
+                            if (result)
                             {
-                                url: "../api/EmployeePayrolls/" + button.attr("data-employeePayroll-id"),
-                                method: "DELETE",
-                                    success: function () {
-                                        button.parents("tr").remove();
+                                $.ajax
+                                (
+                                    {
+                                        url: "../api/EmployeePayrolls/" + button.attr("data-employeePayroll-id"),
+                                        method: "DELETE",
+                                        success: function ()
+                                        {
+                                            button.parents("tr").remove();
+                                        }
                                     }
+                                ); 
                             }
-                        );
-                    }
+                        });
+                    //if (confirm("您确定要删除该条记录吗？")) {
+                      
+                    //     }
                 });
         });
     </script>
