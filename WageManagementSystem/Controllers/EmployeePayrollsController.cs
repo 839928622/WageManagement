@@ -85,7 +85,7 @@ namespace WageManagementSystem.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "Id,PayrollDate,EmoloyeeNumber,EmployeeName,Gender,Attendance,OverTime,Salary,AttendanceDataSources,ComPosition,ComRank,EnrollMentDate,ResignationDate,Deadline,SchoolName,FeeType,ReleaseType")] EmployeePayroll employeePayroll)
+        public async Task<ActionResult> Edit([Bind(Include = "Id,PayrollDate,EmployeeNumber,EmployeeName,Gender,Attendance,OverTime,Salary,AttendanceDataSources,ComPosition,ComRank,EnrollMentDate,ResignationDate,Deadline,SchoolName,FeeType,ReleaseType")] EmployeePayroll employeePayroll)
         {
             if (ModelState.IsValid)
             {
