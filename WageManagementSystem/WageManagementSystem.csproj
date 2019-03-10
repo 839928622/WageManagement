@@ -234,6 +234,10 @@
     <Compile Include="Migrations\201903091421573_AddColumnReleaseTypeAndColumnFee.Designer.cs">
       <DependentUpon>201903091421573_AddColumnReleaseTypeAndColumnFee.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201903100917288_fixColumnEmoloyeeNumberToEmployeeNumber.cs" />
+    <Compile Include="Migrations\201903100917288_fixColumnEmoloyeeNumberToEmployeeNumber.Designer.cs">
+      <DependentUpon>201903100917288_fixColumnEmoloyeeNumberToEmployeeNumber.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AttendanceDataSources.cs" />
@@ -518,6 +522,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201903091421573_AddColumnReleaseTypeAndColumnFee.resx">
       <DependentUpon>201903091421573_AddColumnReleaseTypeAndColumnFee.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903100917288_fixColumnEmoloyeeNumberToEmployeeNumber.resx">
+      <DependentUpon>201903100917288_fixColumnEmoloyeeNumberToEmployeeNumber.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

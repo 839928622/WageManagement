@@ -47,7 +47,7 @@
                 <td>工号</td>
                 <td>姓名</td>
                 <td>性别</td>
-                <td>出勤数(天)</td>
+                @*<td>出勤数(天)</td>
                 <td>加班数（小时）</td>
                 <td>薪酬</td>
                 <td>考勤数据源</td>
@@ -60,23 +60,24 @@
                 <td>费用类型</td>
                 <td>发放类型</td>
                 <td>编辑</td>
-                <td>删除</td>
+                <td>删除</td>*@
                
             </tr>
         </thead> 
         <tbody>
-         @foreach (var Employee in Model)
-         {
-             <tr>
-                 <td>@Employee.PayrollDate.Date.ToString("yyyy-MM")</td>
-                 <td>@Html.ActionLink(Employee.EmoloyeeNumber, "Edit", "EmployeePayrolls", new {id = Employee.Id})</td>
-                 <td>@Employee.EmployeeName</td>
 
-                 <td>
-                     <button data-employeePayroll-id="@Employee.Id" class="btn-link js-delete">删除</button>
-                 </td>
-             </tr>
-         }
+        @*@foreach (var Employee in Model)
+        {
+            <tr>
+                <td>@Employee.PayrollDate.Date.ToString("yyyy-MM")</td>
+                <td>@Html.ActionLink(Employee.EmoloyeeNumber, "Edit", "EmployeePayrolls", new {id = Employee.Id})</td>
+                <td>@Employee.EmployeeName</td>
+
+                <td>
+                    <button data-employeePayroll-id="@Employee.Id" class="btn-link js-delete">删除</button>
+                </td>
+            </tr>
+        }*@
         </tbody>
         
 
@@ -88,30 +89,73 @@
 {
     <script>
         $(document).ready(function() {
+            $("#EmployeePayrolls").DataTable //use Datatable to render data
+            (
+                {
+                    ajax:
+                    {
+                        url: "../Api/EmployeePayrolls",
+                        dataSrc:
+                            ""
+                    },
+                    columns: [
+                        {
+                            data:
+                                "payrollDate", //指定陈列哪些数据，we use data propery to tell table where to get data for this column
+                            render: function(val) {
+                                var date = new Date(val);
+                                var y = date.getFullYear();
+                                var m = date.getMonth();
+                                return y + "-" + m; //返回yyyy-MM
+
+                            }
+                        },
+                        {
+                            data: "employeeNumber",
+                            render: function(data, type, employeePayroll) {
+                                return "<a href='../EmployeePayrolls/Edit/" +
+                                    employeePayroll.id +
+                                    "'>" + data + "</a>";
+                            }
+                        },
+                        {
+                            data: "employeeName"
+
+
+                        },
+                        {
+                            data: "id",
+                            render: function(data) {
+                                return "<button class='btn-link js-delete' data-employeePayroll-id=" +
+                                    data +
+                                    ">删除</button>";
+                            }
+                        }
+                    ]
+
+                });
+
             $("#EmployeePayrolls .js-delete").on("click",
                 function() {
                     var button = $(this);
                     //
                     bootbox.confirm("您确定要删除该条记录吗？",
-                        function (result)
-                        {
-                            if (result)
-                            {
+                        function(result) {
+                            if (result) {
                                 $.ajax
                                 (
                                     {
                                         url: "../api/EmployeePayrolls/" + button.attr("data-employeePayroll-id"),
                                         method: "DELETE",
-                                        success: function ()
-                                        {
+                                        success: function() {
                                             button.parents("tr").remove();
                                         }
                                     }
-                                ); 
+                                );
                             }
                         });
                     //if (confirm("您确定要删除该条记录吗？")) {
-                      
+
                     //     }
                 });
         });

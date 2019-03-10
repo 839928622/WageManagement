@@ -9,7 +9,7 @@ namespace WageManagementSystem.Dtos
     {
         public int Id { get; set; }
         public DateTime PayrollDate { get; set; }
-        public string EmoloyeeNumber { get; set; }
+        public string EmployeeNumber { get; set; }
         public string EmployeeName { get; set; }
         public bool Gender { get; set; }
         public double Attendance { get; set; }
