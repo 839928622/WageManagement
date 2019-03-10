@@ -214,7 +214,6 @@
     <Compile Include="Controllers\EmployeePayrollsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Controllers\SchoolsController.cs" />
     <Compile Include="Dtos\EmployeePayrollDto.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -230,6 +229,10 @@
     <Compile Include="Migrations\201903080329430_AddTableEmployeePayrolls.cs" />
     <Compile Include="Migrations\201903080329430_AddTableEmployeePayrolls.Designer.cs">
       <DependentUpon>201903080329430_AddTableEmployeePayrolls.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903091421573_AddColumnReleaseTypeAndColumnFee.cs" />
+    <Compile Include="Migrations\201903091421573_AddColumnReleaseTypeAndColumnFee.Designer.cs">
+      <DependentUpon>201903091421573_AddColumnReleaseTypeAndColumnFee.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -299,11 +302,6 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Schools\Create.cshtml" />
-    <Content Include="Views\Schools\Delete.cshtml" />
-    <Content Include="Views\Schools\Details.cshtml" />
-    <Content Include="Views\Schools\Edit.cshtml" />
-    <Content Include="Views\Schools\Index.cshtml" />
     <Content Include="Views\AttendanceDataSources\Create.cshtml" />
     <Content Include="Views\AttendanceDataSources\Delete.cshtml" />
     <Content Include="Views\AttendanceDataSources\Details.cshtml" />
@@ -342,6 +340,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201903080329430_AddTableEmployeePayrolls.resx">
       <DependentUpon>201903080329430_AddTableEmployeePayrolls.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903091421573_AddColumnReleaseTypeAndColumnFee.resx">
+      <DependentUpon>201903091421573_AddColumnReleaseTypeAndColumnFee.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

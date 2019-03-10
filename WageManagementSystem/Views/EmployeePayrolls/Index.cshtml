@@ -10,7 +10,8 @@
 <p>
     @Html.ActionLink("补录", "Create")
 </p>
-<table class="table">
+
+<table class="table" id="">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.PayrollDate)
@@ -20,20 +21,71 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model.DistinctBy(c=>c.PayrollDate.Year)){
-    <tr>
-        <td>
-            <a href="Details.cshtml"> @Html.DisplayFor(model => item.PayrollDate.Year)</a>
-        </td>
+    @foreach (var item in Model.DistinctBy(c=>c.PayrollDate.Year)){
+        <tr>
+            <td>
+                <a href="Details.cshtml"> @Html.DisplayFor(model => item.PayrollDate.Year)</a>
+            </td>
 
         
        
-        @*<td>
+            @*<td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
             @Html.ActionLink("Details", "Details", new { id=item.Id }) |
             @Html.ActionLink("Delete", "Delete", new { id=item.Id })
         </td>*@
-    </tr>
-}
+        </tr>
+    }
 
 </table>
+
+<div>
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <td>发放年月份</td>
+                <td>工号</td>
+                <td>姓名</td>
+                <td>性别</td>
+                <td>出勤数(天)</td>
+                <td>加班数（小时）</td>
+                <td>薪酬</td>
+                <td>考勤数据源</td>
+                <td>职务</td>
+                <td>职级</td>
+                <td>入职日期</td>
+                <td>离职日期</td>
+                <td>输送期限</td>
+                <td>输送机构</td>
+                <td>费用类型</td>
+                <td>发放类型</td>
+                <td>编辑</td>
+                <td>删除</td>
+               
+            </tr>
+        </thead> 
+        <tbody>
+         @foreach (var Employee in Model)
+         {
+             <tr>
+                 <td>@Employee.PayrollDate.Date.ToString("yyyy-MM")</td>
+                 <td>@Html.ActionLink(Employee.EmoloyeeNumber, "Edit", "EmployeePayrolls", new {id = Employee.Id})</td>
+                 <td>@Employee.EmployeeName</td>
+
+                 <td>
+                     <button class="btn-link">删除</button>
+                 </td>
+             </tr>
+         }
+        </tbody>
+        
+
+    </table>
+</div>
+
+
+@section scripts
+{
+    
+}
+
