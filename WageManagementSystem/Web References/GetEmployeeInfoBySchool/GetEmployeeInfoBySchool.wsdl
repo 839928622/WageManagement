@@ -192,7 +192,6 @@
           <xsd:element name="RESIGNATIONDATE" type="xsd:string" />
           <xsd:element name="DEADLINE" type="xsd:string" />
           <xsd:element name="SCHOOLNAME" type="xsd:string" />
-          <xsd:element name="DEPARTMENT" type="xsd:string" />
         </xsd:sequence>
       </xsd:complexType>
       <xsd:complexType name="APPBODYS">
