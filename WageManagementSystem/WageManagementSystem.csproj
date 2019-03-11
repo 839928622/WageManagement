@@ -243,6 +243,10 @@
     <Compile Include="Migrations\201903100917288_fixColumnEmoloyeeNumberToEmployeeNumber.Designer.cs">
       <DependentUpon>201903100917288_fixColumnEmoloyeeNumberToEmployeeNumber.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201903110840370_AddColumnDepartmentToTableEmployeePayroll.cs" />
+    <Compile Include="Migrations\201903110840370_AddColumnDepartmentToTableEmployeePayroll.Designer.cs">
+      <DependentUpon>201903110840370_AddColumnDepartmentToTableEmployeePayroll.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AttendanceDataSources.cs" />
@@ -570,6 +574,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201903100917288_fixColumnEmoloyeeNumberToEmployeeNumber.resx">
       <DependentUpon>201903100917288_fixColumnEmoloyeeNumberToEmployeeNumber.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903110840370_AddColumnDepartmentToTableEmployeePayroll.resx">
+      <DependentUpon>201903110840370_AddColumnDepartmentToTableEmployeePayroll.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
