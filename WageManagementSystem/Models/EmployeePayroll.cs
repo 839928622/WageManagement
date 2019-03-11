@@ -28,7 +28,11 @@ namespace WageManagementSystem.Models
         public string SchoolName { get; set; }
         public string FeeType { get; set; }
         public string ReleaseType { get; set; }
+        public string Department { get; set; }
 
-
+        public static implicit operator EmployeePayroll(EmployeePayroll v)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -225,6 +225,8 @@ namespace WageManagementSystem.GetEmployeeInfoBySchool {
         
         private string sCHOOLNAMEField;
         
+        private string dEPARTMENTField;
+        
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
         public string EMPLOYEEID {
@@ -321,6 +323,17 @@ namespace WageManagementSystem.GetEmployeeInfoBySchool {
             }
             set {
                 this.sCHOOLNAMEField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public string DEPARTMENT {
+            get {
+                return this.dEPARTMENTField;
+            }
+            set {
+                this.dEPARTMENTField = value;
             }
         }
     }

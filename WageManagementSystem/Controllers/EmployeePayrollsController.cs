@@ -7,7 +7,11 @@ using System.Threading.Tasks;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using AutoMapper;
 using Microsoft.Ajax.Utilities;
+using Quartz;
+using WageManagementSystem.Dtos;
+using WageManagementSystem.Jobs;
 using WageManagementSystem.Models;
 
 namespace WageManagementSystem.Controllers
@@ -15,6 +19,31 @@ namespace WageManagementSystem.Controllers
     public class EmployeePayrollsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
+
+      
+
+        public RedirectToRouteResult GenerateEmployeeFee()
+        {
+
+        
+        IJobDetail SyncEmployeeInfo = JobBuilder.Create<SyncEmployeeInfo>()
+                .WithIdentity("SyncInfo", "Group1")
+                .Build();
+
+            ITrigger trigger = TriggerBuilder.Create()
+                .WithIdentity("Triggle1", "Group1")
+                .StartNow()
+                .WithSimpleSchedule(x => x.WithIntervalInSeconds(5).WithRepeatCount(5))
+                .Build();
+
+            return RedirectToAction("Index");
+            //return  db.EmployeePayrolls
+            //       .Where(c => c.PayrollDate >= Convert.ToDateTime(DateTime.Now.ToString("yyyy-01-01")))//return current 
+            //       .ToList()
+            //       .Select(Mapper.Map<EmployeePayroll, EmployeePayrollDto>);
+        }
+
+
 
         // GET: EmployeePayrolls
         public async Task<ActionResult> Index()
