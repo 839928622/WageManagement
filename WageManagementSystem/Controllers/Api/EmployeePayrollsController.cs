@@ -9,14 +9,25 @@ using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
+using System.Web.Http.Controllers;
 using System.Web.Http.Description;
+using System.Web.Mvc;
+using Quartz;
 using WageManagementSystem.Dtos;
+using WageManagementSystem.Jobs;
 using WageManagementSystem.Models;
 
 namespace WageManagementSystem.Controllers.Api
 {
     public class EmployeePayrollsController : ApiController
     {
+        //private IScheduler _scheduler;
+
+        //public EmployeePayrollsController(IScheduler scheduler)
+        //{
+        //    _scheduler = scheduler;
+        //}
+
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: api/EmployeePayrolls
@@ -40,7 +51,7 @@ namespace WageManagementSystem.Controllers.Api
 
         // PUT: api/EmployeePayrolls/5
       //  [ResponseType(typeof(void))]
-      [HttpPut]
+      [System.Web.Http.HttpPut]
         public void  PutEmployeePayroll(int id, EmployeePayrollDto employeePayrollDto)
         {
             if (!ModelState.IsValid)
@@ -79,7 +90,7 @@ namespace WageManagementSystem.Controllers.Api
 
         // POST: api/EmployeePayrolls
       //  [ResponseType(typeof(EmployeePayroll))]
-      [HttpPost]
+      [System.Web.Http.HttpPost]
         public async Task<IHttpActionResult> CreateEmployeePayroll(EmployeePayrollDto employeePayrollDto)
         {
             if (!ModelState.IsValid)
@@ -101,7 +112,7 @@ namespace WageManagementSystem.Controllers.Api
 
         // DELETE: api/EmployeePayrolls/5
        // [ResponseType(typeof(EmployeePayrollDto))]
-       [HttpDelete]
+       [System.Web.Http.HttpDelete]
         public async Task<IHttpActionResult> DeleteEmployeePayroll(int id)
         {
             EmployeePayroll employeePayroll = await db.EmployeePayrolls.FindAsync(id);
@@ -116,6 +127,27 @@ namespace WageManagementSystem.Controllers.Api
             return Ok(employeePayroll);
         }
 
+
+        //public  IEnumerable<EmployeePayrollDto> GenerateEmployeeFee()
+        //{
+        //    IJobDetail SyncEmployeeInfo = JobBuilder.Create<Job>()
+        //        .WithIdentity("SyncInfo", "Group1")
+        //        .Build();
+
+        //    ITrigger trigger = TriggerBuilder.Create()
+        //        .WithIdentity("Triggle1", "Group1")
+        //        .StartNow()
+        //        .WithSimpleSchedule(x=>x.WithIntervalInSeconds(5).WithRepeatCount(5))
+        //        .Build();
+
+
+        //    return db.EmployeePayrolls
+        //        .Where(c=>c.PayrollDate>=Convert.ToDateTime(DateTime.Now.ToString("yyyy-01-01")))//return current 
+        //        .ToList()
+        //        .Select(Mapper.Map<EmployeePayroll, EmployeePayrollDto>);
+        //}
+
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)
@@ -124,6 +156,8 @@ namespace WageManagementSystem.Controllers.Api
             }
             base.Dispose(disposing);
         }
+
+
 
         private bool EmployeePayrollExists(int id)
         {
