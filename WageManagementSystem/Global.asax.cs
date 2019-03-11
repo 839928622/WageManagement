@@ -7,6 +7,7 @@ using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 using WageManagementSystem.App_Start;
+using WageManagementSystem.JobBase;
 
 namespace WageManagementSystem
 {
@@ -20,7 +21,8 @@ namespace WageManagementSystem
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-            
+            JobManager.State();
+
         }
     }
 }
