@@ -30,9 +30,9 @@ namespace WageManagementSystem.Models
         public string ReleaseType { get; set; }
         public string Department { get; set; }
 
-        public static implicit operator EmployeePayroll(EmployeePayroll v)
-        {
-            throw new NotImplementedException();
-        }
+        //public static implicit operator EmployeePayroll(EmployeePayroll v)
+        //{
+        //    throw new NotImplementedException();
+        //}
     }
 }
