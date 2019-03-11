@@ -527,10 +527,10 @@
       <LastGenOutput>Reference.cs</LastGenOutput>
     </Content>
     <None Include="Web References\GetEmployeeInfoBySchool\GetEmployeeInfoBySchool.wsdl" />
-    <Content Include="Web References\GetEmployeeInfoBySchool\Reference.map">
+    <None Include="Web References\GetEmployeeInfoBySchool\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
-    </Content>
+    </None>
     <Content Include="Web References\GetEmployeeInfoBySchool\SVCBODYS.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </Content>
