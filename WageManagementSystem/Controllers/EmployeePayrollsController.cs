@@ -13,6 +13,9 @@ using Quartz;
 using WageManagementSystem.Dtos;
 using WageManagementSystem.Jobs;
 using WageManagementSystem.Models;
+using WageManagementSystem.EmployeeAttendanceQuery;
+using System.Collections.Specialized;
+using Quartz.Impl;
 
 namespace WageManagementSystem.Controllers
 {
@@ -22,19 +25,40 @@ namespace WageManagementSystem.Controllers
 
       
 
-        public RedirectToRouteResult GenerateEmployeeFee()
+        public   RedirectToRouteResult GenerateEmployeeFee()
         {
 
-        
-        IJobDetail SyncEmployeeInfo = JobBuilder.Create<SyncEmployeeInfo>()
+
+            NameValueCollection props = new NameValueCollection
+          {
+                             { "quartz.serializer.type", "binary" }
+                       };
+                StdSchedulerFactory factory = new StdSchedulerFactory(props);
+           
+         // get a scheduler
+         IScheduler sched =  factory.GetScheduler();
+                 sched.Start();
+
+            IJobDetail SyncEmployeeInfo = JobBuilder.Create<SyncEmployeeInfo>()
                 .WithIdentity("SyncInfo", "Group1")
                 .Build();
 
             ITrigger trigger = TriggerBuilder.Create()
                 .WithIdentity("Triggle1", "Group1")
                 .StartNow()
-                .WithSimpleSchedule(x => x.WithIntervalInSeconds(5).WithRepeatCount(5))
+                .WithSimpleSchedule(x => x.WithIntervalInSeconds(360000).WithRepeatCount(1))
                 .Build();
+
+            try
+            {
+                sched.ScheduleJob(SyncEmployeeInfo, trigger);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            
 
             return RedirectToAction("Index");
             //return  db.EmployeePayrolls
@@ -44,6 +68,86 @@ namespace WageManagementSystem.Controllers
         }
 
 
+        public async Task<double[]> Getworkday(string EmployeeCode, string StartTime, string EndTime,
+                string AttendanceDataSources)
+        {
+            DONLIM_MCASHRMS_EMPLOYEEATTENDANCEQUERY_087
+                packData = new DONLIM_MCASHRMS_EMPLOYEEATTENDANCEQUERY_087();
+
+            DONLIM_MCASHRMS_EMPLOYEEATTENDANCEQUERY_0871 objpackData =
+                new DONLIM_MCASHRMS_EMPLOYEEATTENDANCEQUERY_0871();
+
+            SvcHdrTypes scvhdrtypes = new SvcHdrTypes();
+            AppBodyTypes appbodytypes = new AppBodyTypes();
+            AppBodyType appbodytype = new AppBodyType();
+            QueryResultListTypes qurtylist = new QueryResultListTypes();
+            QueryDataType querytype = new QueryDataType();
+
+
+
+            objpackData.SvcHdr = new SvcHdrType();
+            objpackData.AppBody = new AppBodyType();
+            objpackData.AppHdr = new AppHdrType();
+
+
+            objpackData.SvcHdr.SOURCEID = "EIP";
+            objpackData.SvcHdr.IPADDRESS = "192.168.80.63";
+            objpackData.SvcHdr.TYPE = "SELECT";
+            objpackData.SvcHdr.BO = "EIP考勤查询";
+            objpackData.SvcHdr.DESTINATIONID = AttendanceDataSources;
+
+
+            objpackData.AppBody.QueryData_ITEM = new QueryDataType[1];
+            objpackData.AppBody.QueryData_ITEM[0] = new QueryDataType();
+
+            objpackData.AppBody.QueryData_ITEM[0].EmployeeCode = EmployeeCode; //722394   703035 HRMS 19-1~31
+
+            objpackData.AppBody.QueryData_ITEM[0].StartTime = Convert.ToDateTime(StartTime);
+            objpackData.AppBody.QueryData_ITEM[0].EndTime = Convert.ToDateTime(EndTime);
+
+
+            DONLIM_MCASHRMS_EMPLOYEEATTENDANCEQUERY_087Response Attendance =
+                new DONLIM_MCASHRMS_EMPLOYEEATTENDANCEQUERY_087Response();
+
+            await Task.Run(() =>
+            {
+                Attendance = packData.CallDONLIM_MCASHRMS_EMPLOYEEATTENDANCEQUERY_087
+                    (objpackData); //invoke it
+            });
+
+            //access success
+
+
+
+
+            return scvhdrtypes.RCODE == "S" && Attendance.AppBodys.QueryResultList_ITEM != null
+                ? new double[]
+                {
+                        (double) Attendance.AppBodys.QueryResultList_ITEM[0].Ycqts,
+                        (double) Attendance.AppBodys.QueryResultList_ITEM[0].OverTime
+                }
+                : new double[] { };
+
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> getworkdays(string code,string attendenceSourse)
+        {
+            var start = DateTime.Now.AddMonths(-1).ToString("yyyy-MM-01");//上个月第一天
+            var startdatetime = Convert.ToDateTime(start);
+            var end = startdatetime.AddDays(1 - startdatetime.Day).AddMonths(1).AddDays(-1).ToString("yyyy-MM-dd");//上个月最后一天
+         double[] result= await Getworkday(code,start,end, attendenceSourse);
+
+            EmployeePayroll ep = new EmployeePayroll();
+            if (result!=null)
+            {
+                ep.Attendance = 25;//result[0];
+                ep.OverTime = 0;// result[1];
+            }
+            
+            return Json(ep,JsonRequestBehavior.AllowGet);
+
+        }
 
         // GET: EmployeePayrolls
         public async Task<ActionResult> Index()

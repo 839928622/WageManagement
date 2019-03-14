@@ -91,7 +91,7 @@
     <script>
         $(document).ready(function() {
 
-            $("#EmployeePayrolls").DataTable //use Datatable to render data
+     var table =  $("#EmployeePayrolls").DataTable //use Datatable to render data
                 (
                 {
                     autoWidth:false,////不开启自动宽度，用bootstrap的自适应去调整
@@ -137,8 +137,12 @@
                             render: function(val) {
                                 var date = new Date(val);
                                 var y = date.getFullYear();
-                                var m = date.getMonth();
-                                return y + "-" + m; //返回yyyy-MM
+                                var m = date.getMonth()+1;//js months start from 0
+                                
+                               // var d = date.getDate()
+                                ;
+                                                        
+                                return y+"-"+m; //返回yyyy-MM
 
                             }
                         },
@@ -189,8 +193,8 @@
                             render: function(val) {
                                 var date = new Date(val);
                                 var y = date.getFullYear();
-                                var m = date.getMonth();
-                                var d = date.getDay();
+                                var m = date.getMonth()+1;
+                                var d = date.getDate();
                                 return y + "-" + m + "-" + d;
                             } //return yyyy-MM-dd
                         },
@@ -199,8 +203,8 @@
                             render: function (val) {
                                 var date = new Date(val);
                                 var y = date.getFullYear();
-                                var m = date.getMonth();
-                                var d = date.getDay();
+                                var m = date.getMonth()+1;
+                                var d = date.getDate();
                                 return y + "-" + m + "-" + d;
                             } //rreturn yyyy-MM-dd
 
@@ -210,8 +214,8 @@
                             render: function(val) {
                                 var date = new Date(val);
                                 var y = date.getFullYear();
-                                var m = date.getMonth();
-                                var d = date.getDay();
+                                var m = date.getMonth()+1;
+                                var d = date.getDate();
                                 return y + "-" + m + "-" + d; //rreturn yyyy-MM-dd
                             }
                         },
@@ -253,9 +257,13 @@
                                 {
                                     url: "../api/EmployeePayrolls/" + button.attr("data-employeepayroll-id"),
                                     method: "DELETE",
-                                    success: function() {
-                                        button.parents("tr").remove();
-                                    }
+                                        success: function () {
+                                            table.row(button.parents("tr")).remove().draw();//delete the corresponding employeePayroll from the internal list maintained by datatable
+                                       // button.parents("tr").remove();
+                                        }
+                                        
+                                        
+
                                 }
                             );
                         }

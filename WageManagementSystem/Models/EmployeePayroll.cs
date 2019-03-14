@@ -10,7 +10,7 @@ namespace WageManagementSystem.Models
     {
         public int Id { get; set; }
 
-        [Display(Name = "发放年月份")]
+        [Display(Name = "发放日期")]
         public DateTime PayrollDate { get; set; }
         [Display(Name = "工号")]
         public string EmployeeNumber { get; set; }

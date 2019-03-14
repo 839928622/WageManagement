@@ -19,6 +19,7 @@ using WageManagementSystem.Models;
 
 namespace WageManagementSystem.Controllers.Api
 {
+    
     public class EmployeePayrollsController : ApiController
     {
         //private IScheduler _scheduler;
@@ -33,11 +34,19 @@ namespace WageManagementSystem.Controllers.Api
         // GET: api/EmployeePayrolls
         public IEnumerable<EmployeePayrollDto> GetEmployeePayrolls()
         {
-            return db.EmployeePayrolls.ToList().Select(Mapper.Map<EmployeePayroll,EmployeePayrollDto>);
+            DateTime dt =Convert.ToDateTime(DateTime.Now.AddMonths(-1).ToString("yyyy-MM-01")) ;
+            var result = from tmp in db.EmployeePayrolls
+                    .Where(e => e.PayrollDate
+                                == dt)
+                    select tmp;
+              //  .ToList()
+              //  .Select(Mapper.Map<EmployeePayroll,EmployeePayrollDto>);//show last month data/latest data
+              return result.ToList()
+                  .Select(Mapper.Map<EmployeePayroll, EmployeePayrollDto>);
         }
 
         // GET: api/EmployeePayrolls/5
-      //  [ResponseType(typeof(EmployeePayroll))]
+        //  [ResponseType(typeof(EmployeePayroll))]
         public async Task<EmployeePayrollDto> GetEmployeePayroll(int id)
         {
             EmployeePayroll employeePayroll = await db.EmployeePayrolls.FindAsync(id);
