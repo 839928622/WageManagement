@@ -154,74 +154,115 @@ namespace WageManagementSystem.Jobs
         async  void IJob.Execute(IJobExecutionContext context)
         {
 
-     
-        
+            JobDataMap datamap = context.MergedJobDataMap;
+            DateTime startTime = datamap.GetDateTime("startTime");
+            DateTime endTime = datamap.GetDateTime("endTime");
 
-        #region 根据输送机构同步人员信息
-
-        var schools = await db.Schools.Where(s => s.IsActive == true).Select(s => new { s.Name }).ToListAsync();
-            foreach (var school in schools)
+            if (startTime == null || endTime == null)
             {
-                var employees = await GetEmployeesInfo(school.Name);
-                foreach (var employee in employees)
+                #region 根据输送机构同步人员信息
+
+                var schools = await db.Schools.Where(s => s.IsActive == true).Select(s => new { s.Name }).ToListAsync();
+                foreach (var school in schools)
                 {
-                    db.EmployeePayrolls.Add(employee);
+                    var employees = await GetEmployeesInfo(school.Name);
+                    foreach (var employee in employees)
+                    {
+                        db.EmployeePayrolls.Add(employee);
+                        db.SaveChanges();
+                    }
+                }
+
+
+                #endregion
+
+
+                #region 同步考勤数据源
+                var employDepartment = await db.EmployeePayrolls.Where(e=>e.AttendanceDataSources==null). ToArrayAsync();//查找考勤数据源为null的
+                foreach (var item in employDepartment)
+                {
+                    string department = item.Department;
+
+                    string[] depart = Regex.Split(department, "-", RegexOptions.IgnoreCase);
+
+                    item.AttendanceDataSources = db.AttendanceDataSourceses
+                        .Where(t => t.Branch == depart[1] + depart[2])//制造群-部门
+                        .Select(s => s.AttendenceSources)
+                        .SingleOrDefault();
                     db.SaveChanges();
                 }
+
+
+                #endregion
+
+
+                #region 生成发放记录
+
+
+
+                var employeeSalary = await db.EmployeePayrolls.Where(
+                        e =>
+                         e.PayrollDate.AddMonths(1).ToString("yyyy-MM") == DateTime.Now.ToString("yyyy-MM"))
+                        .Select(s => new { s.Attendance, s.OverTime, s.Id, s.EmployeeNumber, s.Department, s.AttendanceDataSources })
+                        .ToListAsync();//取出上个月中，考勤为空 发放日期的年月+1=当前日期的年月 的数据
+
+
+                foreach (var item in employeeSalary)
+                {
+                    var dataInDb = db.EmployeePayrolls.Find(item.Id);
+
+
+                    var attendence = await Getworkday(
+                                             item.EmployeeNumber
+                                             , DateTime.Now.AddMonths(-1).ToString("yyyy-MM-01")//上个月第一天
+                                             , DateTime.Now.AddDays(1 - DateTime.Now.Day).AddMonths(1).AddDays(-1).ToString("yyyy-MM-dd")//上个月最后一天
+                                             , item.AttendanceDataSources);
+
+                    if (attendence != null)
+                        dataInDb.Attendance = attendence[0];
+                    dataInDb.OverTime = attendence[1];
+
+                    db.SaveChanges();
+                }
+                #endregion
+
             }
-
-
-            #endregion
-
-
-            #region 同步考勤数据源
-            var employDepartment = await db.EmployeePayrolls.ToArrayAsync();
-            foreach (var item in employDepartment)
+            else
             {
-                string department = item.Department;
-
-                string[] depart = Regex.Split(department, "-", RegexOptions.IgnoreCase);
-
-                item.AttendanceDataSources = db.AttendanceDataSourceses
-                    .Where(t => t.Branch == depart[1] + depart[2])
-                    .Select(s => s.AttendenceSources)
-                    .SingleOrDefault();
-                db.SaveChanges();
-            }
-
-
-            #endregion
-
-
-            #region 生成发放记录
 
 
 
-            var employeeSalary = await db.EmployeePayrolls.Where(
-                    e =>
-                     e.PayrollDate.AddMonths(1).Date.ToString("yyyy-MM") == DateTime.Now.ToString("yyyy-MM"))
-                    .Select(s => new { s.Attendance, s.OverTime, s.Id, s.EmployeeNumber, s.Department, s.AttendanceDataSources })
-                    .ToListAsync();//取出上个月中，考勤为空 发放日期的年月+1=当前日期的年月 的数据
+                #region 根据输送机构同步人员信息
+
+                //下面：根据传进来的日期（格式为某个月的一号），查找数据库中，是否存在已经生成的记录，如果有，则删除
+                var PayrollHistoty = await db.EmployeePayrolls
+                    .Where(e => e.PayrollDate == startTime)
+                    .ToListAsync();//查找
+                foreach (var payroll in PayrollHistoty)
+                {
+                    db.EmployeePayrolls.Remove(payroll);//删除
+                }
 
 
-            foreach (var item in employeeSalary)
-            {
-                var dataInDb = db.EmployeePayrolls.Find(item.Id);
-
-
-                var attendence = await Getworkday(
-                                         item.EmployeeNumber
-                                         , DateTime.Now.AddMonths(-1).Date.ToString("yyyy-MM-01")//上个月第一天
-                                         , DateTime.Now.AddDays(1 - DateTime.Now.Day).AddMonths(1).AddDays(-1).ToString("yyyy-MM-dd")//上个月最后一天
-                                         , item.AttendanceDataSources);
-
-                if (attendence != null)
-                    dataInDb.Attendance = attendence[0];
-                dataInDb.OverTime = attendence[1];
+                var schools = await db.Schools
+                    .Where(s => s.IsActive == true && s.Deadline.AddMonths(1)>= startTime)
+                    .Select(s => new { s.Name }).ToListAsync();
                 
-                db.SaveChanges();
+                foreach (var school in schools)
+                {
+                    var employees = await GetEmployeesInfo(school.Name);
+                    foreach (var employee in employees)
+                    {
+                        db.EmployeePayrolls.Add(employee);
+                        db.SaveChanges();
+                    }
+                }
+
+                
+
+                #endregion
             }
-            #endregion
+
 
             db.Dispose();
         }

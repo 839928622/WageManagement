@@ -11,6 +11,7 @@ namespace WageManagementSystem.Models
         public int Id { get; set; }
 
         [Display(Name = "发放日期")]
+       // [DataType(DataType.Date)]
         public DateTime PayrollDate { get; set; }
         [Display(Name = "工号")]
         public string EmployeeNumber { get; set; }

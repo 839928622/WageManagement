@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System;
 
 namespace WageManagementSystem.Models
 {
@@ -15,8 +16,14 @@ namespace WageManagementSystem.Models
         [Display(Name = "费用")]
         public double Fee { get; set; }
 
+        [Display(Name="输送期限")]
+        [DataType(DataType.Date)]
+        public DateTime Deadline { get; set; }
+
         [Display(Name = "是否启用")]
         public bool IsActive { get; set; }
+
+
 
 
 

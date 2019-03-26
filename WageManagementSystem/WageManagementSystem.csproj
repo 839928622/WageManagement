@@ -263,6 +263,10 @@
     <Compile Include="Migrations\201903110840370_AddColumnDepartmentToTableEmployeePayroll.Designer.cs">
       <DependentUpon>201903110840370_AddColumnDepartmentToTableEmployeePayroll.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201903160113326_AddColumnDeadlineToTableSchoolName.cs" />
+    <Compile Include="Migrations\201903160113326_AddColumnDeadlineToTableSchoolName.Designer.cs">
+      <DependentUpon>201903160113326_AddColumnDeadlineToTableSchoolName.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AttendanceDataSources.cs" />
@@ -598,6 +602,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201903110840370_AddColumnDepartmentToTableEmployeePayroll.resx">
       <DependentUpon>201903110840370_AddColumnDepartmentToTableEmployeePayroll.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903160113326_AddColumnDeadlineToTableSchoolName.resx">
+      <DependentUpon>201903160113326_AddColumnDeadlineToTableSchoolName.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

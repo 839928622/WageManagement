@@ -25,7 +25,7 @@ namespace WageManagementSystem.Controllers
 
       
 
-        public   RedirectToRouteResult GenerateEmployeeFee()
+        public   RedirectToRouteResult GenerateEmployeeFee(string startTime,string endTime)
         {
 
 
@@ -40,18 +40,28 @@ namespace WageManagementSystem.Controllers
                  sched.Start();
 
             IJobDetail SyncEmployeeInfo = JobBuilder.Create<SyncEmployeeInfo>()
+
                 .WithIdentity("SyncInfo", "Group1")
+                .StoreDurably()
                 .Build();
+            sched.AddJob(SyncEmployeeInfo, true);
+
 
             ITrigger trigger = TriggerBuilder.Create()
+                .UsingJobData("startTime", startTime)
+                .UsingJobData("startTime", endTime)
+                .ForJob(SyncEmployeeInfo)
                 .WithIdentity("Triggle1", "Group1")
                 .StartNow()
                 .WithSimpleSchedule(x => x.WithIntervalInSeconds(360000).WithRepeatCount(1))
                 .Build();
 
+
+
             try
             {
-                sched.ScheduleJob(SyncEmployeeInfo, trigger);
+                
+                sched.ScheduleJob(trigger);
             }
             catch (Exception)
             {
